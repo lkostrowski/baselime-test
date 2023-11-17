@@ -1,5 +1,4 @@
 import "@saleor/macaw-ui/style";
-import "../tracing";
 
 import "../styles/globals.css";
 import { BaselimeRum } from "@baselime/react-rum";
