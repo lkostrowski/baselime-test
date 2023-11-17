@@ -1,3 +1,5 @@
+import "../tracing";
+
 import { actions, useAppBridge } from "@saleor/app-sdk/app-bridge";
 import { Box, Button, Input, Text } from "@saleor/macaw-ui";
 import { NextPage } from "next";

@@ -1,6 +1,8 @@
 import "@saleor/macaw-ui/style";
+import "../tracing";
+
 import "../styles/globals.css";
-import { BaselimeRum } from '@baselime/react-rum'
+import { BaselimeRum } from "@baselime/react-rum";
 
 import { AppBridge, AppBridgeProvider } from "@saleor/app-sdk/app-bridge";
 import { RoutePropagator } from "@saleor/app-sdk/app-bridge/next";

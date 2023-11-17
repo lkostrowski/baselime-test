@@ -1,4 +1,5 @@
 import { gql } from "urql";
+import "../tracing";
 import { SaleorAsyncWebhook } from "@saleor/app-sdk/handlers/next";
 import { OrderCreatedWebhookPayloadFragment } from "../../../../generated/graphql";
 import { saleorApp } from "../../../saleor-app";
@@ -77,18 +78,17 @@ export default orderCreatedWebhook.createHandler((req, res, ctx) => {
    * Perform logic based on Saleor Event payload
    */
   logger.info(`Order was created for customer: ${payload.order?.userEmail}`);
-  
 
   /**
    * Create GraphQL client to interact with Saleor API.
    */
   const client = createClient(authData.saleorApiUrl, async () => ({ token: authData.token }));
-  
+
   /**
    * Now you can fetch additional data using urql.
    * https://formidable.com/open-source/urql/docs/api/core/#clientquery
    */
-  
+
   // const data = await client.query().toPromise()
 
   /**
