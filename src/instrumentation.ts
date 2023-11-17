@@ -1,3 +1,5 @@
+const { getNodeAutoInstrumentations } = require("@opentelemetry/auto-instrumentations-node");
+
 export async function register() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
     const { BaselimeSDK, VercelPlugin, BetterHttpInstrumentation } = await import(
@@ -8,6 +10,7 @@ export async function register() {
       serverless: true,
       service: "otel-baselime-test",
       instrumentations: [
+        getNodeAutoInstrumentations(),
         new BetterHttpInstrumentation({
           plugins: [
             // Add the Vercel plugin to enable correlation between your logs and traces for projects deployed on Vercel
