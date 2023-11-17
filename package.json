@@ -19,6 +19,7 @@
     "@baselime/pino-transport": "^0.1.5",
     "@baselime/react-rum": "^0.2.5",
     "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.40.0",
     "@saleor/app-sdk": "0.41.0",
     "@saleor/macaw-ui": "1.0.0-pre.4",
     "@urql/exchange-auth": "^1.0.0",
