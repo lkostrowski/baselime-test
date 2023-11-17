@@ -1,5 +1,3 @@
-import "./tracing";
-
 export async function register() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
     const { BaselimeSDK, VercelPlugin, BetterHttpInstrumentation } = await import(
@@ -20,5 +18,7 @@ export async function register() {
     });
 
     sdk.start();
+
+    // await import("./tracing");
   }
 }
