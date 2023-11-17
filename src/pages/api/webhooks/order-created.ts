@@ -3,6 +3,7 @@ import { SaleorAsyncWebhook } from "@saleor/app-sdk/handlers/next";
 import { OrderCreatedWebhookPayloadFragment } from "../../../../generated/graphql";
 import { saleorApp } from "../../../saleor-app";
 import { createClient } from "../../../lib/create-graphq-client";
+import { logger } from "../../../lib/logger";
 
 /**
  * Example payload of the webhook. It will be transformed with graphql-codegen to Typescript type: OrderCreatedWebhookPayloadFragment
@@ -75,7 +76,8 @@ export default orderCreatedWebhook.createHandler((req, res, ctx) => {
   /**
    * Perform logic based on Saleor Event payload
    */
-  console.log(`Order was created for customer: ${payload.order?.userEmail}`);
+  logger.info(`Order was created for customer: ${payload.order?.userEmail}`);
+  
 
   /**
    * Create GraphQL client to interact with Saleor API.

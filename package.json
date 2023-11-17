@@ -15,6 +15,10 @@
     "schemaVersion": "3.10"
   },
   "dependencies": {
+    "@baselime/node-opentelemetry": "^0.2.13",
+    "@baselime/pino-transport": "^0.1.5",
+    "@baselime/react-rum": "^0.2.5",
+    "@opentelemetry/api": "^1.7.0",
     "@saleor/app-sdk": "0.41.0",
     "@saleor/macaw-ui": "1.0.0-pre.4",
     "@urql/exchange-auth": "^1.0.0",
@@ -23,6 +27,7 @@
     "graphql-tag": "^2.12.6",
     "jsdom": "^20.0.3",
     "next": "13.3.0",
+    "pino": "^8.16.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "urql": "^4.0.2",

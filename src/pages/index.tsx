@@ -2,7 +2,12 @@ import { actions, useAppBridge } from "@saleor/app-sdk/app-bridge";
 import { Box, Button, Input, Text } from "@saleor/macaw-ui";
 import { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { MouseEventHandler, useEffect, useState } from "react";
+
+import { trace } from "@opentelemetry/api";
+import { useBaselimeRum } from "@baselime/react-rum";
+import { logger } from "../lib/logger";
 
 const AddToSaleorForm = () => (
   <Box
@@ -28,19 +33,33 @@ const AddToSaleorForm = () => (
   </Box>
 );
 
+const tracer = trace.getTracer("your-custom-traces");
+
 /**
  * This is page publicly accessible from your app.
  * You should probably remove it.
  */
 const IndexPage: NextPage = () => {
+  const { sendEvent } = useBaselimeRum();
+
+  const r = useRouter();
+
+  const search = r.query.search as string;
+  const span = trace.getActiveSpan();
+
+  span?.setAttribute("search", search);
+
   const { appBridgeState, appBridge } = useAppBridge();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    logger.debug("mounted");
     setMounted(true);
   }, []);
 
   const handleLinkClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    sendEvent("link clicked", { href: e.currentTarget.href });
+
     /**
      * In iframe, link can't be opened in new tab, so Dashboard must be a proxy
      */

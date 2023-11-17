@@ -1,5 +1,6 @@
 import "@saleor/macaw-ui/style";
 import "../styles/globals.css";
+import { BaselimeRum } from '@baselime/react-rum'
 
 import { AppBridge, AppBridgeProvider } from "@saleor/app-sdk/app-bridge";
 import { RoutePropagator } from "@saleor/app-sdk/app-bridge/next";
@@ -10,6 +11,8 @@ import { ThemeProvider } from "@saleor/macaw-ui";
 import { NoSSRWrapper } from "../lib/no-ssr-wrapper";
 import { ThemeSynchronizer } from "../lib/theme-synchronizer";
 import { GraphQLProvider } from "../providers/GraphQLProvider";
+
+const baselimeApiKey = process.env.NEXT_PUBLIC_BASELIME_KEY as string;
 
 /**
  * Ensure instance is a singleton.
@@ -32,10 +35,12 @@ function NextApp({ Component, pageProps }: AppProps) {
     <NoSSRWrapper>
       <AppBridgeProvider appBridgeInstance={appBridgeInstance}>
         <GraphQLProvider>
-          <ThemeProvider >
+          <ThemeProvider>
             <ThemeSynchronizer />
             <RoutePropagator />
-            <Component {...pageProps} />
+            <BaselimeRum apiKey={baselimeApiKey} enableWebVitals fallback={<div>err</div>}>
+              <Component {...pageProps} />
+            </BaselimeRum>
           </ThemeProvider>
         </GraphQLProvider>
       </AppBridgeProvider>
