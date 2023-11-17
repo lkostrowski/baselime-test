@@ -1,4 +1,4 @@
-import "./src/tracing";
+import "./tracing";
 
 export async function register() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
