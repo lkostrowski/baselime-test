@@ -5,7 +5,7 @@ export const startOtelSdk = async () => {
 
   const sdk = new BaselimeSDK({
     serverless: true,
-    service: "baselime-test.vercel.app", // hardcoded for log drain
+    service: "baselime-test", // hardcoded for log drain
     instrumentations: [
       new BetterHttpInstrumentation({
         plugins: [
