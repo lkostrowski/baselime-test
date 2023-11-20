@@ -4,7 +4,9 @@ import { SpanStatusCode, trace } from "@opentelemetry/api";
 const tracer = trace.getTracer("otel-test-route");
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const span = trace.getActiveSpan();
+  const span = tracer.startSpan("test-route");
+
+  console.log({ message: "test console log" });
 
   span?.setAttribute("query", JSON.stringify(req.query));
 
