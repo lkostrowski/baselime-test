@@ -9,9 +9,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const tracer = trace.getTracer("otel-test-route");
   const span = tracer.startSpan("test-route");
 
-  logger.log("test console log");
+  logger.info("test console log");
 
-  logger.log("trace data", trace.getActiveSpan()?.spanContext());
+  logger.info(trace.getActiveSpan()?.spanContext(), "trace data");
 
   span?.setAttribute("query", JSON.stringify(req.query));
 

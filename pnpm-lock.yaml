@@ -8,9 +8,6 @@ dependencies:
   '@baselime/node-opentelemetry':
     specifier: ^0.2.13
     version: 0.2.13
-  '@baselime/pino-transport':
-    specifier: ^0.1.5
-    version: 0.1.5
   '@baselime/react-rum':
     specifier: ^0.2.5
     version: 0.2.5(react@18.2.0)
@@ -751,15 +748,6 @@ packages:
     transitivePeerDependencies:
       - debug
       - supports-color
-    dev: false
-
-  /@baselime/pino-transport@0.1.5:
-    resolution: {integrity: sha512-ZWvI6Z0+54bGZ+95EDCcjIciKvDf+j/CrPzQufueSk09tHW94/gikOirPCwjO0uNxqa5u/ZL02YURXhGZZxi6A==}
-    dependencies:
-      axios: 1.6.2
-      pino-abstract-transport: 1.1.0
-    transitivePeerDependencies:
-      - debug
     dev: false
 
   /@baselime/react-rum@0.2.5(react@18.2.0):
