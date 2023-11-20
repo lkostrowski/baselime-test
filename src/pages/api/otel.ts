@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { SpanStatusCode, trace } from "@opentelemetry/api";
 import { startOtelSdk } from "../../lib/sdk";
+import { logger } from "../../lib/logger";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await startOtelSdk();
@@ -8,9 +9,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const tracer = trace.getTracer("otel-test-route");
   const span = tracer.startSpan("test-route");
 
-  console.log("test console log");
+  logger.log("test console log");
 
-  console.log(trace.getActiveSpan()?.spanContext());
+  logger.log("trace data", trace.getActiveSpan()?.spanContext());
 
   span?.setAttribute("query", JSON.stringify(req.query));
 
