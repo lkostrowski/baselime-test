@@ -1,5 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { SpanStatusCode, trace } from "@opentelemetry/api";
+import { startOtelSdk } from "../../lib/sdk";
+
+startOtelSdk();
 
 const tracer = trace.getTracer("otel-test-route");
 

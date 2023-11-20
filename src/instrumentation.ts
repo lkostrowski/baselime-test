@@ -1,24 +1,7 @@
 export async function register() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
-    const { BaselimeSDK, VercelPlugin, BetterHttpInstrumentation } = await import(
-      "@baselime/node-opentelemetry"
-    );
-
-    const sdk = new BaselimeSDK({
-      serverless: true,
-      service: "baselime-test",
-      instrumentations: [
-        new BetterHttpInstrumentation({
-          plugins: [
-            // Add the Vercel plugin to enable correlation between your logs and traces for projects deployed on Vercel
-            new VercelPlugin(),
-          ],
-        }),
-      ],
+    await import("./lib/sdk").then((sdk) => {
+      sdk.startOtelSdk();
     });
-
-    sdk.start();
-
-    // await import("./tracing");
   }
 }
