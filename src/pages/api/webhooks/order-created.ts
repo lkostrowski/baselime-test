@@ -79,6 +79,8 @@ export default orderCreatedWebhook.createHandler((req, res, ctx) => {
    */
   logger.info(`Order was created for customer: ${payload.order?.userEmail}`);
 
+  console.log("Event:", event);
+
   /**
    * Create GraphQL client to interact with Saleor API.
    */
